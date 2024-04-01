@@ -1,0 +1,112 @@
+@import 'https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300&display=swap';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: poppins, sans-serif;
+}
+body .imagenFondo {
+  width: 100vw;
+  opacity: 0.5;
+  position: fixed;
+  z-index: -1;
+}
+body .pantallaPrincipal {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+body .pantallaPrincipal .titulo {
+  margin: 30px;
+}
+body .pantallaPrincipal #start {
+  width: 180px;
+  height: 40px;
+  background: 0 0;
+  background-color: #1d72c9;
+  border: 3px solid #1e4e7f;
+  border-radius: 20px;
+  font-family: "poppins", sans-serif;
+  color: #000;
+  font-size: 17px;
+  font-weight: 600;
+}
+body .pantallaPrincipal #start:hover {
+  cursor: pointer;
+  background-color: #7cafe2;
+  transition: 0.2s;
+}
+body #seleccionarPersonaje {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+body #seleccionarPersonaje .tarjetas {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+body #seleccionarPersonaje .tarjetas input {
+  display: none;
+}
+body #seleccionarPersonaje .tarjetas label {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  margin: 10px 30px;
+  background-color: rgba(84, 159, 213, 0.568627451);
+  width: 25vw;
+  border: 2px solid #1e4e7f;
+  box-shadow: 3px 4px 7px 0px #656a6f;
+  min-width: 245px;
+  flex-direction: column;
+  align-content: center;
+  border-radius: 2px 20px 2px 20px;
+}
+body #seleccionarPersonaje .tarjetas label p {
+  font-size: 25px;
+  font-weight: 600;
+}
+body #seleccionarPersonaje .tarjetas label:hover {
+  cursor: pointer;
+  background-color: rgba(33, 144, 223, 0.8196078431);
+  transform: translateY(-7px);
+  transition: 0.3s;
+}
+body #seleccionarPersonaje .tarjetas input:checked + label {
+  background-color: rgba(33, 144, 223, 0.8196078431);
+  transform: translateY(7px);
+}
+body #seleccionarPersonaje .tarjetas img {
+  width: 200px;
+}
+body #seleccionarPersonaje #btnPersonaje {
+  width: 180px;
+  height: 40px;
+  background: 0 0;
+  background-color: #1d72c9;
+  border: 3px solid #1e4e7f;
+  border-radius: 20px;
+  font-family: "poppins", sans-serif;
+  color: #000;
+  font-size: 17px;
+  font-weight: 600;
+}
+body #seleccionarPersonaje #btnPersonaje:hover {
+  cursor: pointer;
+  background-color: #7cafe2;
+  transition: 0.2s;
+}/*# sourceMappingURL=style.css.map */

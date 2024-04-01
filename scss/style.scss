@@ -1,0 +1,126 @@
+@import './recursos/fuentes';
+@import './recursos/reset';
+
+
+body {
+    font-family: poppins, sans-serif;
+
+    .imagenFondo {
+        width: 100vw;
+        opacity: 0.5;
+        position: fixed;
+        z-index: -1;
+    }
+
+    .pantallaPrincipal {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        .titulo {
+            margin: 30px;
+        }
+
+        #start {
+            width: 180px;
+            height: 40px;
+            background: 0 0;
+            background-color: #1d72c9;
+            border: 3px solid #1e4e7f;
+            border-radius: 20px;
+            font-family: 'poppins', sans-serif;
+            color: #000;
+            font-size: 17px;
+            font-weight: 600;
+            
+            &:hover {
+                cursor: pointer;
+                background-color: #7cafe2;
+                transition: 0.2s;
+            }
+        }
+    }
+
+    #seleccionarPersonaje {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+
+        .tarjetas {
+            margin: 20px;
+            display: flex;
+            flex-direction: row;
+            text-decoration: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+
+            input {
+                display: none;
+            }
+
+            label {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                text-align: center;
+                margin: 10px 30px;
+                background-color: #549fd591;
+                width: 25vw;
+                border: 2px solid #1e4e7f;
+                box-shadow: 3px 4px 7px 0px #656a6f;
+                min-width: 245px;
+                flex-direction: column;
+                align-content: center;
+                border-radius: 2px 20px 2px 20px;
+                
+                
+                p {
+                    font-size: 25px;
+                    font-weight: 600;
+                }
+                
+                &:hover {
+                    cursor: pointer;
+                    background-color: #2190dfd1;
+                    transform: translateY(-7px);
+                    transition: 0.3s;
+                }
+            }
+            
+            input:checked+label {
+                background-color: #2190dfd1;
+                transform: translateY(7px);
+            }
+            
+            img {
+                width: 200px;
+            }
+        }
+
+        #btnPersonaje {
+            width: 180px;
+            height: 40px;
+            background: 0 0;
+            background-color: #1d72c9;
+            border: 3px solid #1e4e7f;
+            border-radius: 20px;
+            font-family: 'poppins', sans-serif;
+            color: #000;
+            font-size: 17px;
+            font-weight: 600;
+            
+            &:hover {
+                cursor: pointer;
+                background-color: #7cafe2;
+                transition: 0.2s;
+            }
+        }
+
+    }
+}
