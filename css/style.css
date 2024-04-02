@@ -88,7 +88,7 @@ body #seleccionarPersonaje .tarjetas label:hover {
 }
 body #seleccionarPersonaje .tarjetas input:checked + label {
   background-color: rgba(33, 144, 223, 0.8196078431);
-  transform: translateY(7px);
+  transform: translateY(-7px);
 }
 body #seleccionarPersonaje .tarjetas img {
   width: 200px;
@@ -109,4 +109,27 @@ body #seleccionarPersonaje #btnPersonaje:hover {
   cursor: pointer;
   background-color: #7cafe2;
   transition: 0.2s;
+}
+body #seleccionarAtaque {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+body #seleccionarAtaque .tarjetasAtaques {
+  margin: 20px;
+}
+body #seleccionarAtaque .ataques {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+body #seleccionarAtaque .ataques .ataquesJugador {
+  margin: 20px;
+}
+body #seleccionarAtaque .ataques .ataquesEnemigo {
+  margin: 20px;
 }/*# sourceMappingURL=style.css.map */

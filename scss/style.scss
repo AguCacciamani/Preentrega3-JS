@@ -95,7 +95,7 @@ body {
             
             input:checked+label {
                 background-color: #2190dfd1;
-                transform: translateY(7px);
+                transform: translateY(-7px);
             }
             
             img {
@@ -122,5 +122,33 @@ body {
             }
         }
 
+    }
+
+    #seleccionarAtaque {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+
+        .tarjetasAtaques {
+            margin: 20px;
+        }
+        
+        .ataques {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            text-align: center;
+
+            .ataquesJugador {
+                margin: 20px;
+            }
+
+            .ataquesEnemigo {
+                margin: 20px;
+            }
+        }
     }
 }
