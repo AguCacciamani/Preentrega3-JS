@@ -18,7 +18,7 @@ let argenmones = [];
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 let ataqueJugador = [];
-let ataqueEnemigo;
+let ataqueEnemigo = [];
 let opcionDeArgenmones;
 let inputFlamdor;
 let inputDuñan;
@@ -29,6 +29,7 @@ let inputOrclish;
 let botones = [];
 let personajeJugador;
 let ataquesArgenmon;
+let ataquesArgenmonEnemigo;
 
 class Argenmon {
     constructor(nombre, foto, vida) {
@@ -167,6 +168,7 @@ function secuenciaAtaque() {
                 console.log(ataqueJugador);
                 boton.disabled = true;
             }
+            ataqueAleatorioEnemigo();
         })
     })
 }
@@ -175,6 +177,7 @@ function seleccionarPersonajeEnemigo() {
     let personajeAleatorio = aleatorio(0, argenmones.length - 1);
 
     spanPersonajeEnemigo.innerHTML = argenmones[personajeAleatorio].nombre;
+    ataquesArgenmonEnemigo = argenmones[personajeAleatorio].ataques;
     secuenciaAtaque()
 }
 
@@ -198,16 +201,16 @@ function aleatorio(min, max) {
 }
 
 function ataqueAleatorioEnemigo() {
-    let ataqueAleatorio = aleatorio(1, 3);
+    let ataqueAleatorio = aleatorio(0, ataquesArgenmonEnemigo.length -1);
 
-    if (ataqueAleatorio == 1) {
-        ataqueEnemigo = 'FUEGO';
-    } else if (ataqueAleatorio == 2) {
-        ataqueEnemigo = 'TIERRA';
+    if (ataqueAleatorio == 0 || ataqueAleatorio == 1) {
+        ataqueEnemigo.push('FUEGO') ;
+    } else if (ataqueAleatorio == 3 || ataqueAleatorio == 4) {
+        ataqueEnemigo.push('TIERRA');
     } else {
-        ataqueEnemigo = 'AGUA';
+        ataqueEnemigo.push('AGUA');
     }
-
+    console.log(ataqueEnemigo)
     combate()
 }
 
