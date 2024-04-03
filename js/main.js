@@ -17,6 +17,8 @@ const contenedorAtaques = document.getElementById('contenedorAtaques');
 let argenmones = [];
 let vidasJugador = 3;
 let vidasEnemigo = 3;
+let victoriasJugador = 0;
+let victoriasEnemigo = 0;
 let ataqueJugador = [];
 let ataqueEnemigo = [];
 let opcionDeArgenmones;
@@ -27,6 +29,8 @@ let botonTierra;
 let botonAgua;
 let inputOrclish;
 let botones = [];
+let iAtaqueJugador;
+let iAtaqueEnemigo;
 let personajeJugador;
 let ataquesArgenmon;
 let ataquesArgenmonEnemigo;
@@ -201,7 +205,7 @@ function aleatorio(min, max) {
 }
 
 function ataqueAleatorioEnemigo() {
-    let ataqueAleatorio = aleatorio(0, ataquesArgenmonEnemigo.length -1);
+    let ataqueAleatorio = aleatorio(0, ataquesArgenmonEnemigo.length - 1);
 
     if (ataqueAleatorio == 0 || ataqueAleatorio == 1) {
         ataqueEnemigo.push('FUEGO') ;
@@ -211,31 +215,49 @@ function ataqueAleatorioEnemigo() {
         ataqueEnemigo.push('AGUA');
     }
     console.log(ataqueEnemigo)
-    combate()
+    iniciarPelea()
 }
 
-//Cambiar funcion de vidas a Energia
+function iniciarPelea() {
+    if (ataqueJugador.length === 5) {
+        combate()
+    }
+}
+
+function iAmbosOponentes(jugador, enemigo) {
+    iAtaqueJugador = ataqueJugador[jugador];
+    iAtaqueEnemigo = ataqueEnemigo[enemigo];
+}
+
 function combate() {
 
-    if (ataqueEnemigo == ataqueJugador) {
-        crearMensaje('EMPATE');
-    } else if ((ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA') || (ataqueJugador == 'TIERRA' && ataqueEnemigo == 'AGUA') || (ataqueJugador == 'AGUA' && ataqueEnemigo == 'FUEGO')) {
-        crearMensaje('GANASTE');
-        vidasEnemigo -= 1;
-        spanVidasEnemigo.innerHTML = vidasEnemigo;
-    } else {
-        crearMensaje('PERDISTE');
-        vidasJugador -= 1;
-        spanVidasJugador.innerHTML = vidasJugador;
+    for (let i = 0; i < ataqueJugador.length; i++) {
+        if(ataqueJugador[i] === ataqueEnemigo[i]) {
+            iAmbosOponentes(i, i);
+            crearMensaje('EMPATE');
+        }else if((ataqueJugador[i] === 'FUEGO' && ataqueEnemigo[i] === 'TIERRA') || (ataqueJugador[i] === 'TIERRA' && ataqueEnemigo[i] === 'AGUA') || (ataqueJugador[i] === 'AGUA' && ataqueEnemigo[i] === 'FUEGO')) {
+            iAmbosOponentes(i, i);
+            crearMensaje('GANASTE');
+            victoriasJugador ++
+            spanVidasJugador.innerHTML = victoriasJugador;
+        }else {
+            iAmbosOponentes(i, i);
+            crearMensaje('PERDISTE');
+            victoriasEnemigo ++
+            spanVidasEnemigo.innerHTML = victoriasEnemigo;
+        }
     }
 
     revisarVidas()
 }
 
 function revisarVidas() {
-    if (vidasEnemigo == 0) {
+    if (victoriasEnemigo == victoriasJugador) {
+        crearMensajeResultado('Fue un empate');
+        
+    } else if (victoriasJugador > victoriasEnemigo) {
         crearMensajeResultado('El Argenmón enemigo no puede continuar. GANASTE PAPÁ!!');
-    } else if (vidasJugador == 0) {
+    }else {
         crearMensajeResultado('Te dieron masa. Intenta de nuevo.')
     }
 }
@@ -246,8 +268,8 @@ function crearMensaje(resultado) {
     let nuevoAtaqueDelEnemigo = document.createElement('p');
 
     sectionMensajes.innerHTML = resultado;
-    nuevoAtaqueDelJugador.innerHTML = ataqueJugador;
-    nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo;
+    nuevoAtaqueDelJugador.innerHTML = iAtaqueJugador;
+    nuevoAtaqueDelEnemigo.innerHTML = iAtaqueEnemigo;
 
     ataquesDelJugador.appendChild(nuevoAtaqueDelJugador);
     ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo);
@@ -256,10 +278,6 @@ function crearMensaje(resultado) {
 function crearMensajeResultado(resultadoFinal) {
 
     sectionMensajes.innerHTML = resultadoFinal;
-    botonAgua.disabled = true;
-    botonTierra.disabled = true;
-    botonFuego.disabled = true;
-
     sectionReiniciar.style.display = "block";
 }
 
