@@ -74,6 +74,22 @@ orclish.ataques.push(
 
 argenmones.push(flamdor, duñan, orclish)
 
+function guardarDatosJugador() {
+    sessionStorage.setItem('jugador', JSON.stringify({
+        victorias: victoriasJugador,
+        vidas: vidasJugador
+    }));
+}
+
+function cargarDatosJugador() {
+    const jugadorGuardado = sessionStorage.getItem('jugador');
+    if(jugadorGuardado) {
+        const datosJugador = JSON.parse(jugadorGuardado);
+        victoriasJugador = datosJugador.victorias;
+        vidasJugador = datosJugador.vidas;
+    }
+}
+
 function cargarJuego() {
 
     sectionSeleccionarPersonaje.style.display = 'none';
@@ -81,6 +97,8 @@ function cargarJuego() {
     sectionReiniciar.style.display = 'none';
 
     playGame.addEventListener('click', iniciarJuego);
+
+    cargarDatosJugador();
 }
 
 function iniciarJuego() {
@@ -108,7 +126,6 @@ function iniciarJuego() {
     botonReiniciar.addEventListener('click', reiniciarJuego);
 
 }
-
 
 function seleccionarPersonajeJugador() {
 
@@ -222,6 +239,7 @@ function iniciarPelea() {
     if (ataqueJugador.length === 5) {
         combate()
     }
+    actualizarDatosJugador();
 }
 
 function iAmbosOponentes(jugador, enemigo) {
@@ -279,6 +297,10 @@ function crearMensajeResultado(resultadoFinal) {
 
     sectionMensajes.innerHTML = resultadoFinal;
     sectionReiniciar.style.display = "block";
+}
+
+function actualizarDatosJugador() {
+    guardarDatosJugador();
 }
 
 function reiniciarJuego() {
