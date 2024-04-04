@@ -7,8 +7,10 @@ const sectionReiniciar = document.getElementById('reiniciar');
 const botonPersonajeJugador = document.getElementById('btnPersonaje');
 const botonReiniciar = document.getElementById('btnReiniciar');
 const spanPersonajeEnemigo = document.getElementById('personajeEnemigo');
-const spanVidasJugador = document.getElementById('victoriasJugador');
-const spanVidasEnemigo = document.getElementById('victoriasEnemigo');
+const spanVictoriasJugador = document.getElementById('victoriasJugador');
+const spanVictoriasEnemigo = document.getElementById('victoriasEnemigo');
+const spanVictoriasAcumuladasJugador = document.getElementById('victoriasAcumuladasJugador');
+const spanVictoriasAcumuladasEnemigo = document.getElementById('victoriasAcumuladasEnemigo');
 const sectionMensajes = document.getElementById('resultado');
 const ataquesDelJugador = document.getElementById('ataquesDelJugador');
 const ataquesDelEnemigo = document.getElementById('ataquesDelEnemigo');
@@ -16,10 +18,10 @@ const contenedorTarjetas = document.getElementById('contenedorTarjetas');
 const contenedorAtaques = document.getElementById('contenedorAtaques');
 
 let argenmones = [];
-let vidasJugador = 3;
-let vidasEnemigo = 3;
 let victoriasJugador = 0;
 let victoriasEnemigo = 0;
+let victoriasAcumuladasJugador = 0;
+let victoriasAcumuladasEnemigo = 0;
 let ataqueJugador = [];
 let ataqueEnemigo = [];
 let opcionDeArgenmones;
@@ -76,18 +78,30 @@ orclish.ataques.push(
 argenmones.push(flamdor, duñan, orclish)
 
 function guardarDatosJugador() {
-    sessionStorage.setItem('jugador', JSON.stringify({
-        victorias: victoriasJugador,
-        vidas: vidasJugador
+    localStorage.setItem('jugador', JSON.stringify({
+        victorias: victoriasAcumuladasJugador,
     }));
 }
 
+function guardarDatosEnemigo() {
+    localStorage.setItem('enemigo', JSON.stringify({
+        victorias: victoriasAcumuladasEnemigo,
+    }))
+}
+
 function cargarDatosJugador() {
-    const jugadorGuardado = sessionStorage.getItem('jugador');
+    const jugadorGuardado = localStorage.getItem('jugador');
     if (jugadorGuardado) {
         const datosJugador = JSON.parse(jugadorGuardado);
-        victoriasJugador = datosJugador.victorias;
-        vidasJugador = datosJugador.vidas;
+        victoriasAcumuladasJugador = datosJugador.victorias;
+    }
+}
+
+function cargarDatosEnemigo(){
+    const enemigoGuardado = localStorage.getItem('enemigo');
+    if(enemigoGuardado) {
+        const datosEnemigo = JSON.parse(enemigoGuardado);
+        victoriasAcumuladasEnemigo = datosEnemigo.victorias;
     }
 }
 
@@ -100,6 +114,7 @@ function cargarJuego() {
     playGame.addEventListener('click', iniciarJuego);
 
     cargarDatosJugador();
+    cargarDatosEnemigo();
 }
 
 function iniciarJuego() {
@@ -179,15 +194,12 @@ function secuenciaAtaque() {
         boton.addEventListener('click', (e) => {
             if (e.target.textContent === '🔥') {
                 ataqueJugador.push('FUEGO');
-                console.log(ataqueJugador);
                 boton.disabled = true;
             } else if (e.target.textContent === '💧') {
                 ataqueJugador.push('AGUA');
-                console.log(ataqueJugador);
                 boton.disabled = true;
             } else {
                 ataqueJugador.push('TIERRA');
-                console.log(ataqueJugador);
                 boton.disabled = true;
             }
             ataqueAleatorioEnemigo();
@@ -241,6 +253,7 @@ function iniciarPelea() {
         combate()
     }
     actualizarDatosJugador();
+    actualizarDatosEnemigo();
 }
 
 function iAmbosOponentes(jugador, enemigo) {
@@ -258,12 +271,12 @@ function combate() {
             iAmbosOponentes(i, i);
             crearMensaje('GANASTE');
             victoriasJugador++
-            spanVidasJugador.innerHTML = victoriasJugador;
+            spanVictoriasJugador.innerHTML = victoriasJugador;
         } else {
             iAmbosOponentes(i, i);
             crearMensaje('PERDISTE');
             victoriasEnemigo++
-            spanVidasEnemigo.innerHTML = victoriasEnemigo;
+            spanVictoriasEnemigo.innerHTML = victoriasEnemigo;
         }
     }
 
@@ -276,8 +289,12 @@ function revisarVidas() {
 
     } else if (victoriasJugador > victoriasEnemigo) {
         crearMensajeResultado('El Argenmón enemigo no puede continuar. GANASTE PAPÁ!!');
+        victoriasAcumuladasJugador += 1
+        spanVictoriasAcumuladasJugador.innerHTML = victoriasAcumuladasJugador;
     } else {
         crearMensajeResultado('Te dieron masa. Intenta de nuevo.')
+        victoriasAcumuladasEnemigo += 1
+        spanVictoriasAcumuladasEnemigo.innerHTML = victoriasAcumuladasEnemigo;
     }
 }
 
@@ -304,8 +321,23 @@ function actualizarDatosJugador() {
     guardarDatosJugador();
 }
 
+function actualizarDatosEnemigo() {
+    guardarDatosEnemigo();
+}
+
 function reiniciarJuego() {
-    location.reload()
+    victoriasJugador = 0;
+    victoriasEnemigo = 0;
+    ataqueJugador = [];
+    ataqueEnemigo = [];
+    spanVictoriasJugador.innerHTML = victoriasJugador;
+    spanVictoriasEnemigo.innerHTML = victoriasEnemigo;
+    ataquesDelJugador.innerHTML = "";
+    ataquesDelEnemigo.innerHTML = "";
+    
+    botones.forEach((boton) => {
+        boton.disabled = false;
+    })
 }
 
 window.addEventListener("load", cargarJuego);
