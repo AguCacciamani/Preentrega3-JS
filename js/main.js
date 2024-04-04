@@ -1,13 +1,14 @@
 const playGame = document.getElementById('start');
 const sectionSeleccionarPersonaje = document.getElementById('seleccionarPersonaje');
+const sectionPantallaPrincipal = document.getElementById('pantallaPrincipal');
 const spanPersonajeJugador = document.getElementById('personajeJugador');
 const sectionSeleccionarAtaque = document.getElementById('seleccionarAtaque');
 const sectionReiniciar = document.getElementById('reiniciar');
 const botonPersonajeJugador = document.getElementById('btnPersonaje');
 const botonReiniciar = document.getElementById('btnReiniciar');
 const spanPersonajeEnemigo = document.getElementById('personajeEnemigo');
-const spanVidasJugador = document.getElementById('vidasJugador');
-const spanVidasEnemigo = document.getElementById('vidasEnemigo');
+const spanVidasJugador = document.getElementById('victoriasJugador');
+const spanVidasEnemigo = document.getElementById('victoriasEnemigo');
 const sectionMensajes = document.getElementById('resultado');
 const ataquesDelJugador = document.getElementById('ataquesDelJugador');
 const ataquesDelEnemigo = document.getElementById('ataquesDelEnemigo');
@@ -83,7 +84,7 @@ function guardarDatosJugador() {
 
 function cargarDatosJugador() {
     const jugadorGuardado = sessionStorage.getItem('jugador');
-    if(jugadorGuardado) {
+    if (jugadorGuardado) {
         const datosJugador = JSON.parse(jugadorGuardado);
         victoriasJugador = datosJugador.victorias;
         vidasJugador = datosJugador.vidas;
@@ -102,7 +103,7 @@ function cargarJuego() {
 }
 
 function iniciarJuego() {
-    playGame.style.display = 'none';
+    sectionPantallaPrincipal.style.display = 'none';
     sectionSeleccionarPersonaje.style.display = 'flex';
     sectionSeleccionarAtaque.style.display = 'none';
     sectionReiniciar.style.display = 'none';
@@ -180,11 +181,11 @@ function secuenciaAtaque() {
                 ataqueJugador.push('FUEGO');
                 console.log(ataqueJugador);
                 boton.disabled = true;
-            }else if(e.target.textContent === '💧') {
+            } else if (e.target.textContent === '💧') {
                 ataqueJugador.push('AGUA');
                 console.log(ataqueJugador);
                 boton.disabled = true;
-            }else {
+            } else {
                 ataqueJugador.push('TIERRA');
                 console.log(ataqueJugador);
                 boton.disabled = true;
@@ -225,7 +226,7 @@ function ataqueAleatorioEnemigo() {
     let ataqueAleatorio = aleatorio(0, ataquesArgenmonEnemigo.length - 1);
 
     if (ataqueAleatorio == 0 || ataqueAleatorio == 1) {
-        ataqueEnemigo.push('FUEGO') ;
+        ataqueEnemigo.push('FUEGO');
     } else if (ataqueAleatorio == 3 || ataqueAleatorio == 4) {
         ataqueEnemigo.push('TIERRA');
     } else {
@@ -250,18 +251,18 @@ function iAmbosOponentes(jugador, enemigo) {
 function combate() {
 
     for (let i = 0; i < ataqueJugador.length; i++) {
-        if(ataqueJugador[i] === ataqueEnemigo[i]) {
+        if (ataqueJugador[i] === ataqueEnemigo[i]) {
             iAmbosOponentes(i, i);
             crearMensaje('EMPATE');
-        }else if((ataqueJugador[i] === 'FUEGO' && ataqueEnemigo[i] === 'TIERRA') || (ataqueJugador[i] === 'TIERRA' && ataqueEnemigo[i] === 'AGUA') || (ataqueJugador[i] === 'AGUA' && ataqueEnemigo[i] === 'FUEGO')) {
+        } else if ((ataqueJugador[i] === 'FUEGO' && ataqueEnemigo[i] === 'TIERRA') || (ataqueJugador[i] === 'TIERRA' && ataqueEnemigo[i] === 'AGUA') || (ataqueJugador[i] === 'AGUA' && ataqueEnemigo[i] === 'FUEGO')) {
             iAmbosOponentes(i, i);
             crearMensaje('GANASTE');
-            victoriasJugador ++
+            victoriasJugador++
             spanVidasJugador.innerHTML = victoriasJugador;
-        }else {
+        } else {
             iAmbosOponentes(i, i);
             crearMensaje('PERDISTE');
-            victoriasEnemigo ++
+            victoriasEnemigo++
             spanVidasEnemigo.innerHTML = victoriasEnemigo;
         }
     }
@@ -272,10 +273,10 @@ function combate() {
 function revisarVidas() {
     if (victoriasEnemigo == victoriasJugador) {
         crearMensajeResultado('Fue un empate');
-        
+
     } else if (victoriasJugador > victoriasEnemigo) {
         crearMensajeResultado('El Argenmón enemigo no puede continuar. GANASTE PAPÁ!!');
-    }else {
+    } else {
         crearMensajeResultado('Te dieron masa. Intenta de nuevo.')
     }
 }

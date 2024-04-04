@@ -17,14 +17,18 @@ body .imagenFondo {
   z-index: -1;
 }
 body .pantallaPrincipal {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 body .pantallaPrincipal .titulo {
   margin: 30px;
+}
+body .pantallaPrincipal .titulo img {
+  width: 50vw;
 }
 body .pantallaPrincipal #start {
   width: 180px;
@@ -50,6 +54,9 @@ body #seleccionarPersonaje {
   align-content: center;
   justify-content: center;
   align-items: center;
+}
+body #seleccionarPersonaje img {
+  margin: 20px;
 }
 body #seleccionarPersonaje .tarjetas {
   margin: 20px;
@@ -120,6 +127,9 @@ body #seleccionarAtaque {
   align-content: center;
   justify-content: center;
   align-items: center;
+}
+body #seleccionarAtaque img {
+  margin: 20px;
 }
 body #seleccionarAtaque .tarjetasAtaques {
   margin: 20px;

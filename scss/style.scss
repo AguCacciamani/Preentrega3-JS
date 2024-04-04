@@ -13,14 +13,19 @@ body {
     }
 
     .pantallaPrincipal {
+        height: 100vh;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
 
         .titulo {
             margin: 30px;
+            
+            img {
+                width: 50vw;
+            }
         }
 
         #start {
@@ -51,6 +56,9 @@ body {
         justify-content: center;
         align-items: center;
         
+        img {
+            margin: 20px;
+        }
         
         .tarjetas {
             margin: 20px;
@@ -131,6 +139,10 @@ body {
         align-content: center;
         justify-content: center;
         align-items: center;
+
+        img {
+            margin: 20px;
+        }
 
         .tarjetasAtaques {
             margin: 20px;
