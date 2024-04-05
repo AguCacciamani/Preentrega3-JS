@@ -9,6 +9,7 @@
 
 body {
   font-family: "Pixelify Sans", sans-serif;
+  width: 100vw;
 }
 body .imagenFondo {
   width: 100vw;
@@ -34,10 +35,10 @@ body .pantallaPrincipal #start {
   width: 180px;
   height: 40px;
   background: 0 0;
-  background-color: #1d72c9;
+  background-color: rgba(29, 115, 201, 0.4666666667);
   border: 3px solid #1e4e7f;
-  border-radius: 20px;
-  font-family: "poppins", sans-serif;
+  border-radius: 7px;
+  font-family: "Pixelify Sans", sans-serif;
   color: #000;
   font-size: 17px;
   font-weight: 600;
@@ -46,8 +47,10 @@ body .pantallaPrincipal #start:hover {
   cursor: pointer;
   background-color: #7cafe2;
   transition: 0.2s;
+  color: #ffcc03;
 }
 body #seleccionarPersonaje {
+  height: 100vh;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -55,7 +58,7 @@ body #seleccionarPersonaje {
   justify-content: center;
   align-items: center;
 }
-body #seleccionarPersonaje img {
+body #seleccionarPersonaje h2 {
   margin: 20px;
 }
 body #seleccionarPersonaje .tarjetas {
@@ -107,10 +110,10 @@ body #seleccionarPersonaje #btnPersonaje {
   width: 180px;
   height: 40px;
   background: 0 0;
-  background-color: #1d72c9;
+  background-color: rgba(29, 115, 201, 0.4666666667);
   border: 3px solid #1e4e7f;
-  border-radius: 20px;
-  font-family: "poppins", sans-serif;
+  border-radius: 7px;
+  font-family: "Pixelify Sans", sans-serif;
   color: #000;
   font-size: 17px;
   font-weight: 600;
@@ -119,17 +122,16 @@ body #seleccionarPersonaje #btnPersonaje:hover {
   cursor: pointer;
   background-color: #7cafe2;
   transition: 0.2s;
+  color: #ffcc03;
 }
 body #seleccionarAtaque {
   display: flex;
+  height: 100vh;
   flex-wrap: wrap;
   flex-direction: column;
   align-content: center;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-}
-body #seleccionarAtaque img {
-  margin: 20px;
 }
 body #seleccionarAtaque .tarjetasAtaques {
   margin: 20px;
