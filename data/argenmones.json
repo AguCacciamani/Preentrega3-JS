@@ -4,26 +4,26 @@
         "foto": "assets/Flamdor.png",
         "vida": 100,
         "tipo": "Fuego",
-        "ataque1": "Corte Aereo",
-        "ataque2": "Ascuas",
-        "ataque3": "Llamarada"
+        "ataque1": "Corte Aereo 💫",
+        "ataque2": "Ascuas 🔥",
+        "ataque3": "Llamarada 🔥"
     },
     {
         "nombre": "Duñan",
         "foto": "assets/Duñan.png",
         "vida": 100,
         "tipo": "Planta",
-        "ataque1": "Cabezazo",
-        "ataque2": "Hoja Afilada",
-        "ataque3": "Hoja Aguda"
+        "ataque1": "Cabezazo 💢",
+        "ataque2": "Hoja Afilada 🗡",
+        "ataque3": "Hoja Aguda 🍃"
     },
     {
         "nombre": "Orclish",
         "foto": "assets/Orclish.png",
         "vida": 100,
         "tipo": "Agua",
-        "ataque1": "Mordisco",
-        "ataque2": "Acua Jet",
-        "ataque3": "Hidrobomba"
+        "ataque1": "Mordisco 💢",
+        "ataque2": "Acua Jet 💦",
+        "ataque3": "Hidrobomba 🌊"
     }
 ]

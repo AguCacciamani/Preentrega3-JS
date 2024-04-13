@@ -48,16 +48,18 @@
 
             <h2 class="subtitulo">Que comience la batalla!</h2>
 
-            <!-- <div id="contenedorAtaques" class="tarjetasAtaques">
-            </div> -->
-
+            <div class="indicadorJugador">
+                <h3>Jugador 1</h3>
+                <h3>Jugador 2</h3>
+            </div>
+            
             <div class="containerArgenmonInfo">
                 <div class="argenmonInfo">
-                    <div class="datosArgenmon" id="datosArgenmon1">
+                    <!-- <div class="datosArgenmon" id="datosArgenmon1">
                         <p>Nombre:</p>
                         <p>Tipo:</p>
                         <p>Vida:</p>
-                    </div>
+                    </div> -->
                     <div class="argenmonElegido" id="argenmonElegido1">
                         <p class="display-text" id="argenmonNombre1"></p>
                         <p class="display-text" id="argenmonTipo1"></p>
@@ -65,11 +67,11 @@
                     </div>
                 </div>
                 <div class="argenmonInfo">
-                    <div class="datosArgenmon" id="datosArgenmon2">
+                    <!-- <div class="datosArgenmon" id="datosArgenmon2">
                         <p>Nombre:</p>
                         <p>Tipo:</p>
                         <p>Vida:</p>
-                    </div>
+                    </div> -->
                     <div class="argenmonElegido" id="argenmonElegido2">
                         <p class="display-text" id="argenmonNombre2"></p>
                         <p class="display-text" id="argenmonTipo2"></p>
@@ -78,28 +80,11 @@
                 </div>
             </div>
 
-            <!-- <div id="mensajes">
-                <p id="resultado">Mucha suerte!</p>
+            <p id="resultado">Mucha suerte!</p>
 
-            </div> -->
             <section id="reiniciar">
                 <button id="btnReiniciar">Reiniciar</button>
             </section>
-
-            <!-- <div class="ataques">
-                <div class="ataquesJugador">
-                    <p id="victoriasAcumuladasJugador">0</p>
-                    <p id="victoriasJugador">0</p>
-                    <p id="personajeJugador"></p>
-                    <div id="ataquesDelJugador"></div>
-                </div>
-                <div class="ataquesEnemigo">
-                    <p id="victoriasAcumuladasEnemigo">0</p>
-                    <p id="victoriasEnemigo">0</p>
-                    <p id="personajeEnemigo"></p>
-                    <div id="ataquesDelEnemigo"></div>
-                </div>
-            </div> -->
 
             <div class="containerPelea">
 				<div class="pelea">
@@ -109,8 +94,8 @@
 						<input type="button" class="btnAtaque" id="ataque3a" />
 					</div>
 					<div class="battleMap" id="battleMapID">
-						<img id="imgPoke1">
-						<img id="imgPoke2">
+						<img id="imgPoke1" src="" width="150" height="150" class="imgEnd">
+						<img id="imgPoke2" src="" width="150" height="150">
 					</div>
 					<div class="botonesPelea" id="botonesPelea2">
 						<input type="button" class="btnAtaque" id="ataque1b" />
