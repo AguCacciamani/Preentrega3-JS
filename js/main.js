@@ -6,6 +6,7 @@ const sectionSeleccionarAtaque = document.getElementById('seleccionarAtaque');
 const sectionReiniciar = document.getElementById('reiniciar');
 const botonPersonajeJugador = document.getElementById('btnPersonaje');
 const botonPersonajeJugador2 = document.getElementById('btnPersonaje2');
+const botonTirarDado = document.getElementById('tirarDado');
 const botonReiniciar = document.getElementById('btnReiniciar');
 const sectionMensajes = document.getElementById('resultado');
 const ataquesDelJugador = document.getElementById('ataquesDelJugador');
@@ -45,6 +46,11 @@ let ataque3Elegido;
 let ataque1Elegido2;
 let ataque2Elegido2;
 let ataque3Elegido2;
+let jugadorTurno1;
+let jugadorTurno2;
+let botonesAtaqueJugadorTurno1;
+let botonesAtaqueJugadorTurno2;
+let resultadoDado = null;
 
 
 function cargarJuego() {
@@ -160,7 +166,7 @@ function validarPersonajes(argenmones) {
     const argenmonElegido = argenmones.find((argenmon) => argenmon.nombre === nombreElegido);
     const argenmonElegido2 = argenmones.find((argenmon) => argenmon.nombre === nombreElegido2);
 
-    document.getElementById('argenmonNombre1').textContent = 'Nombre: ' +  argenmonElegido.nombre;
+    document.getElementById('argenmonNombre1').textContent = 'Nombre: ' + argenmonElegido.nombre;
     document.getElementById('argenmonTipo1').textContent = 'Tipo: ' + argenmonElegido.tipo;
     document.getElementById('argenmonVida1').textContent = 'Vida: ' + argenmonElegido.vida;
 
@@ -190,8 +196,101 @@ function validarPersonajes(argenmones) {
     ataque2Elegido2 = argenmonElegido2.ataque2;
     ataque3Elegido2 = argenmonElegido2.ataque3;
 
-    botonReiniciar.addEventListener('click', reiniciarJuego);
+    
+    // botonReiniciar.addEventListener('click', reiniciarJuego);
 }
+
+let turnoEjecutado = false;
+
+document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
+    boton.disabled = true;
+});
+
+document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
+    boton.disabled = true;
+});
+
+function tirarDado() {
+
+    let aleatorio = Math.floor(Math.random() * 6) + 1;
+
+    document.getElementById("resultadoDado").innerHTML = '<h3>' + aleatorio + '</h3>';
+
+    resultadoDado = aleatorio;
+
+    if (!turnoEjecutado) {
+        turno();
+        turnoEjecutado = true;
+    }
+}
+
+function turno() {
+    
+    if (resultadoDado === null) {
+        return;
+    }
+
+    if (resultadoDado >= 1 && resultadoDado <= 3) {
+        jugadorTurno1 = 1;
+        jugadorTurno2 = 2;
+        botonesAtaqueJugadorTurno1 = document.querySelectorAll('#botonesPelea1 .btnAtaque');
+        botonesAtaqueJugadorTurno2 = document.querySelectorAll('#botonesPelea2 .btnAtaque');
+        document.getElementById('resultado').innerHTML = 'Turno del Jugador 1';
+    } else {
+        jugadorTurno1 = 2;
+        jugadorTurno2 = 1;
+        botonesAtaqueJugadorTurno1 = document.querySelectorAll('#botonesPelea2 .btnAtaque');
+        botonesAtaqueJugadorTurno2 = document.querySelectorAll('#botonesPelea1 .btnAtaque');
+        document.getElementById('resultado').innerHTML = 'Turno del Jugador 2';
+    }
+
+    botonesAtaqueJugadorTurno1.forEach(boton => {
+        boton.disabled = false;
+    });
+
+    botonesAtaqueJugadorTurno2.forEach(boton => {
+        boton.disabled = true;
+    });
+
+    return jugadorTurno1;
+}
+
+document.getElementById('tirarDado').addEventListener('click', tirarDado);
+
+turno();
+
+let daño = 0;
+
+ataque1a.addEventListener('click', () => {
+    daño = 10;
+    console.log(daño);
+});
+
+ataque2a.addEventListener('click', () => {
+    daño = 20;
+    console.log(daño);
+});
+
+ataque3a.addEventListener('click', () => {
+    daño = 30;
+    console.log(daño);
+});
+
+ataque1b.addEventListener('click', () => {
+    daño = 10;
+    console.log(daño);
+});
+
+ataque2b.addEventListener('click', () => {
+    daño = 20;
+    console.log(daño);
+});
+
+ataque3b.addEventListener('click', () => {
+    daño = 30;
+    console.log(daño);
+});
+
 
 function crearMensajeResultado(resultadoFinal) {
 
@@ -200,3 +299,4 @@ function crearMensajeResultado(resultadoFinal) {
 }
 
 window.addEventListener("load", cargarJuego);
+
