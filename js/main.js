@@ -214,7 +214,7 @@ function tirarDado() {
 
     let aleatorio = Math.floor(Math.random() * 6) + 1;
 
-    document.getElementById("resultadoDado").innerHTML = '<h3>' + aleatorio + '</h3>';
+    document.getElementById("resultadoDado").innerHTML = aleatorio;
 
     resultadoDado = aleatorio;
 

@@ -159,7 +159,35 @@ body #seleccionarAtaque .containerArgenmonInfo .argenmonInfo .argenmonElegido {
   background-color: rgba(29, 115, 201, 0.4666666667);
   border-radius: 10px;
   width: 200px;
+  height: 80px;
   padding: 8px;
+}
+body #seleccionarAtaque .containerArgenmonInfo #tirarDado {
+  padding: 5px;
+  margin-bottom: 6px;
+  border-radius: 5px;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 17px;
+}
+body #seleccionarAtaque .containerArgenmonInfo #tirarDado:hover {
+  cursor: pointer;
+}
+body #seleccionarAtaque .containerArgenmonInfo #tirarDado:active {
+  color: #ffcc03;
+  transform: translate(1px, 1px);
+}
+body #seleccionarAtaque .containerArgenmonInfo #resultadoDado {
+  font-size: 27px;
+  font-family: "poppins", sans-serif;
+  border: solid 3px black;
+  font-weight: bold;
+  height: 55px;
+  width: 55px;
+  margin: auto;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 body #seleccionarAtaque .pelea {
   margin-top: 15px;

@@ -172,9 +172,42 @@ body {
                     background-color: #1d73c977;
                     border-radius: 10px;
                     width: 200px;
+                    height: 80px;
                     padding: 8px;
                 }
             }
+            #tirarDado {
+                padding: 5px;
+                margin-bottom: 6px;
+                border-radius: 5px;
+                font-family: "Pixelify Sans", sans-serif;
+                font-size: 17px;
+                
+                &:hover {
+                    cursor: pointer;
+                }
+                &:active {
+                    color: #ffcc03;
+                    transform: translate(1px, 1px);
+                }
+            }
+            #resultadoDado {
+                font-size: 27px;
+                font-family: "poppins", sans-serif;
+                border: solid 3px black;
+                font-weight: bold;
+                height: 55px;
+                width: 55px;
+                margin: auto;
+                padding: 8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        #resultado {
+
         }
 
         .pelea {
