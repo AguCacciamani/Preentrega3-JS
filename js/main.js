@@ -34,6 +34,8 @@ let inputOrclish;
 let inputFlamdor2;
 let inputDuñan2;
 let inputOrclish2;
+let argenmonElegido;
+let argenmonElegido2;
 let nombreElegido;
 let nombreElegido2;
 let tipoElegido;
@@ -51,6 +53,7 @@ let jugadorTurno2;
 let botonesAtaqueJugadorTurno1;
 let botonesAtaqueJugadorTurno2;
 let resultadoDado = null;
+let daño = 0;
 
 
 function cargarJuego() {
@@ -163,8 +166,14 @@ function validarPersonajes(argenmones) {
         return;
     }
 
-    const argenmonElegido = argenmones.find((argenmon) => argenmon.nombre === nombreElegido);
-    const argenmonElegido2 = argenmones.find((argenmon) => argenmon.nombre === nombreElegido2);
+    let argenmonElegidoLocal;
+    let argenmonElegido2Local;
+
+    argenmonElegido = argenmones.find((argenmon) => argenmon.nombre === nombreElegido);
+    argenmonElegido2 = argenmones.find((argenmon) => argenmon.nombre === nombreElegido2);
+
+    argenmonElegidoLocal = argenmonElegido;
+    argenmonElegido2Local = argenmonElegido2;
 
     document.getElementById('argenmonNombre1').textContent = 'Nombre: ' + argenmonElegido.nombre;
     document.getElementById('argenmonTipo1').textContent = 'Tipo: ' + argenmonElegido.tipo;
@@ -196,7 +205,7 @@ function validarPersonajes(argenmones) {
     ataque2Elegido2 = argenmonElegido2.ataque2;
     ataque3Elegido2 = argenmonElegido2.ataque3;
 
-    
+
     // botonReiniciar.addEventListener('click', reiniciarJuego);
 }
 
@@ -225,7 +234,7 @@ function tirarDado() {
 }
 
 function turno() {
-    
+
     if (resultadoDado === null) {
         return;
     }
@@ -259,37 +268,72 @@ document.getElementById('tirarDado').addEventListener('click', tirarDado);
 
 turno();
 
-let daño = 0;
+function calcularDaño(argenmonAtacante, argenmonDefensor) {
+    const jugadorAtacante = argenmones.find((argenmon) => argenmon.nombre === argenmonAtacante);
+    const jugadorDefensor = argenmones.find((argenmon) => argenmon.nombre === argenmonDefensor);
+
+    if (!jugadorAtacante || !jugadorDefensor) {
+        console.error("Error: No se encontró un Pokémon.");
+        return;
+    }
+
+    const tipoAtacante = jugadorAtacante.tipo;
+    const tipoDefensor = jugadorDefensor.tipo;
+
+    if (
+        (tipoAtacante === "Fuego" && tipoDefensor === "Planta") ||
+        (tipoAtacante === "Planta" && tipoDefensor === "Agua") ||
+        (tipoAtacante === "Agua" && tipoDefensor === "Fuego")
+    ) {
+        return daño += 5;
+    } else if (
+        (tipoAtacante === "Fuego" && tipoDefensor === "Agua") ||
+        (tipoAtacante === "Planta" && tipoDefensor === "Fuego") ||
+        (tipoAtacante === "Agua" && tipoDefensor === "Planta")
+    ) {
+        return daño -= 5;
+    } else {
+        return daño;
+    }
+}
 
 ataque1a.addEventListener('click', () => {
     daño = 10;
+    calcularDaño(nombreElegido, nombreElegido2);
     console.log(daño);
 });
 
 ataque2a.addEventListener('click', () => {
     daño = 20;
+    calcularDaño(nombreElegido, nombreElegido2);
     console.log(daño);
 });
 
 ataque3a.addEventListener('click', () => {
     daño = 30;
+    calcularDaño(nombreElegido, nombreElegido2);
     console.log(daño);
 });
 
 ataque1b.addEventListener('click', () => {
     daño = 10;
+    calcularDaño(nombreElegido2, nombreElegido);
     console.log(daño);
 });
 
 ataque2b.addEventListener('click', () => {
     daño = 20;
+    calcularDaño(nombreElegido2, nombreElegido);
     console.log(daño);
 });
 
 ataque3b.addEventListener('click', () => {
     daño = 30;
+    calcularDaño(nombreElegido2, nombreElegido);
     console.log(daño);
 });
+
+
 
 
 function crearMensajeResultado(resultadoFinal) {
@@ -299,4 +343,3 @@ function crearMensajeResultado(resultadoFinal) {
 }
 
 window.addEventListener("load", cargarJuego);
-
