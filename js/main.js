@@ -297,44 +297,10 @@ function calcularDaño(argenmonAtacante, argenmonDefensor) {
     }
 }
 
-ataque1a.addEventListener('click', () => {
-    daño = 10;
-    calcularDaño(nombreElegido, nombreElegido2);
-    console.log(daño);
-});
-
-ataque2a.addEventListener('click', () => {
-    daño = 20;
-    calcularDaño(nombreElegido, nombreElegido2);
-    console.log(daño);
-});
-
-ataque3a.addEventListener('click', () => {
-    daño = 30;
-    calcularDaño(nombreElegido, nombreElegido2);
-    console.log(daño);
-});
-
-ataque1b.addEventListener('click', () => {
-    daño = 10;
-    calcularDaño(nombreElegido2, nombreElegido);
-    console.log(daño);
-});
-
-ataque2b.addEventListener('click', () => {
-    daño = 20;
-    calcularDaño(nombreElegido2, nombreElegido);
-    console.log(daño);
-});
-
-ataque3b.addEventListener('click', () => {
-    daño = 30;
-    calcularDaño(nombreElegido2, nombreElegido);
-    console.log(daño);
-});
-
-
-
+// function actualizarVida() {
+//     const jugadorAtacante = argenmones.find((argenmon) => argenmon.nombre === argenmonAtacante);
+//     const jugadorDefensor = argenmones.find((argenmon) => argenmon.nombre === argenmonDefensor);
+// }
 
 function crearMensajeResultado(resultadoFinal) {
 
@@ -343,3 +309,77 @@ function crearMensajeResultado(resultadoFinal) {
 }
 
 window.addEventListener("load", cargarJuego);
+
+
+
+ataque1a.addEventListener('click', () => {
+    daño = 10;
+    calcularDaño(nombreElegido, nombreElegido2);
+    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
+        boton.disabled = true;
+    })
+    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
+        boton.disabled = false;
+    });
+    console.log(daño);
+});
+
+ataque2a.addEventListener('click', () => {
+    daño = 20;
+    calcularDaño(nombreElegido, nombreElegido2);
+    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
+        boton.disabled = true;
+    })
+    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
+        boton.disabled = false;
+    });
+    console.log(daño);
+});
+
+ataque3a.addEventListener('click', () => {
+    daño = 30;
+    calcularDaño(nombreElegido, nombreElegido2);
+    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
+        boton.disabled = true;
+    })
+    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
+        boton.disabled = false;
+    });
+    console.log(daño);
+});
+
+ataque1b.addEventListener('click', () => {
+    daño = 10;
+    calcularDaño(nombreElegido2, nombreElegido);
+    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
+        boton.disabled = false;
+    })
+    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
+        boton.disabled = true;
+    });
+    console.log(daño);
+});
+
+ataque2b.addEventListener('click', () => {
+    daño = 20;
+    calcularDaño(nombreElegido2, nombreElegido);
+    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
+        boton.disabled = false;
+    })
+    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
+        boton.disabled = true;
+    });
+    console.log(daño);
+});
+
+ataque3b.addEventListener('click', () => {
+    daño = 30;
+    calcularDaño(nombreElegido2, nombreElegido);
+    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
+        boton.disabled = false;
+    })
+    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
+        boton.disabled = true;
+    });
+    console.log(daño);
+});
