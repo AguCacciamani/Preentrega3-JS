@@ -3,7 +3,7 @@
 
 
 body {
-    font-family: "Pixelify Sans", sans-serif;
+    font-family: "VT323", monospace;
     width: 100vw;
 
     .imagenFondo {
@@ -18,7 +18,7 @@ body {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
 
         .titulo {
@@ -36,9 +36,9 @@ body {
             background-color: #1d73c977;
             border: 3px solid #1e4e7f;
             border-radius: 7px;
-            font-family: "Pixelify Sans", sans-serif;
+            font-family: "VT323", monospace;
             color: #000;
-            font-size: 17px;
+            font-size: 19px;
             font-weight: 600;
 
             &:hover {
@@ -92,7 +92,7 @@ body {
                 border-radius: 2px 20px 2px 20px;
 
                 p {
-                    font-family: "Pixelify Sans", sans-serif;
+                    font-family: "VT323", monospace;
                     font-size: 25px;
                     font-weight: 600;
                 }
@@ -122,9 +122,9 @@ body {
             background-color: #1d73c977;
             border: 3px solid #1e4e7f;
             border-radius: 7px;
-            font-family: "Pixelify Sans", sans-serif;
+            font-family: "VT323", monospace;
             color: #000;
-            font-size: 17px;
+            font-size: 19px;
             font-weight: 600;
 
             &:hover {
@@ -156,6 +156,7 @@ body {
             border: 3px solid #1e4e7f;
             border-radius: 7px;
             color: #fff;
+            font-size: 25px;
         }
 
         .containerArgenmonInfo {
@@ -170,27 +171,33 @@ body {
                 .argenmonElegido {
                     border: 3px solid #1e4e7f;
                     background-color: #1d73c977;
+                    font-family: "VT323", monospace;
+                    font-size: 20px;
+                    font-weight: 600;
                     border-radius: 10px;
                     width: 200px;
                     height: 80px;
                     padding: 8px;
                 }
             }
+
             #tirarDado {
                 padding: 5px;
                 margin-bottom: 6px;
                 border-radius: 5px;
-                font-family: "Pixelify Sans", sans-serif;
-                font-size: 17px;
-                
+                font-family: "VT323", monospace;
+                font-size: 19px;
+
                 &:hover {
                     cursor: pointer;
                 }
+
                 &:active {
                     color: #ffcc03;
                     transform: translate(1px, 1px);
                 }
             }
+
             #resultadoDado {
                 font-size: 27px;
                 font-family: "poppins", sans-serif;
@@ -207,13 +214,25 @@ body {
         }
 
         #resultado {
-
+            background-color: #fff;
+            border-radius: 7px;
+            border-top: 3px solid grey;
+            border-left: 3px solid grey;
+            border-right: 3px solid black;
+            border-bottom: 3px solid black;
+            width: 70vw;
+            height: 55px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            padding: calc((55px - 6px - 20px)/2);
         }
 
         .pelea {
             margin-top: 15px;
+            width: 100vw;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             flex-wrap: wrap;
 
             .botonesPelea {
@@ -228,8 +247,9 @@ body {
                     padding: 5px;
                     margin-bottom: 20px;
                     border-radius: 5px;
-                    font-family: "Pixelify Sans", sans-serif;
-                    font-size: 17px;
+                    font-family: "VT323", monospace;
+                    font-size: 20px;
+                    font-weight: 600;
                     cursor: pointer;
                     transition: 200ms;
                 }
@@ -238,11 +258,24 @@ body {
                     transform: translate(3px, -3px);
                 }
             }
+
+            .campo {
+                margin: 0 20px;
+
+                #vs {
+                    width: 90px;
+                    margin-bottom: 20px;
+                }
+
+                .imgArgen {
+                    margin: 0 20px;
+                }
+
+                #imgArgen1 {
+                    transform: rotateY(180deg);
+                }
+            }
         }
-
-
-
-
 
         .tarjetasAtaques {
             margin: 20px;
@@ -273,7 +306,7 @@ body {
             text-align: center;
 
             p {
-                font-family: "Pixelify Sans", sans-serif;
+                font-family: "VT323", monospace;
                 font-size: 20px;
             }
 
@@ -282,7 +315,7 @@ body {
 
                 #btnReiniciar {
                     background: 0 0;
-                    font-family: "Pixelify Sans", sans-serif;
+                    font-family: "VT323", monospace;
                     background-color: transparent;
                     border: none;
                     font-size: 16px;

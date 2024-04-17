@@ -54,6 +54,7 @@ let botonesAtaqueJugadorTurno1;
 let botonesAtaqueJugadorTurno2;
 let resultadoDado = null;
 let daño = 0;
+let turnoEjecutado = false;
 
 
 function cargarJuego() {
@@ -166,22 +167,20 @@ function validarPersonajes(argenmones) {
         return;
     }
 
-    let argenmonElegidoLocal;
-    let argenmonElegido2Local;
-
     argenmonElegido = argenmones.find((argenmon) => argenmon.nombre === nombreElegido);
     argenmonElegido2 = argenmones.find((argenmon) => argenmon.nombre === nombreElegido2);
-
-    argenmonElegidoLocal = argenmonElegido;
-    argenmonElegido2Local = argenmonElegido2;
 
     document.getElementById('argenmonNombre1').textContent = 'Nombre: ' + argenmonElegido.nombre;
     document.getElementById('argenmonTipo1').textContent = 'Tipo: ' + argenmonElegido.tipo;
     document.getElementById('argenmonVida1').textContent = 'Vida: ' + argenmonElegido.vida;
+    document.getElementById('imgArgen1').src = argenmonElegido.foto;
 
     document.getElementById('argenmonNombre2').textContent = 'Nombre: ' + argenmonElegido2.nombre;
     document.getElementById('argenmonTipo2').textContent = 'Tipo: ' + argenmonElegido2.tipo;
     document.getElementById('argenmonVida2').textContent = 'Vida: ' + argenmonElegido2.vida;
+    document.getElementById('imgArgen2').src = argenmonElegido2.foto;
+
+    
 
     document.getElementById('ataque1a').value = argenmonElegido.ataque1;
     document.getElementById('ataque2a').value = argenmonElegido.ataque2;
@@ -209,8 +208,6 @@ function validarPersonajes(argenmones) {
     // botonReiniciar.addEventListener('click', reiniciarJuego);
 }
 
-let turnoEjecutado = false;
-
 document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
     boton.disabled = true;
 });
@@ -219,8 +216,8 @@ document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
     boton.disabled = true;
 });
 
-function tirarDado() {
 
+function tirarDado() {
     let aleatorio = Math.floor(Math.random() * 6) + 1;
 
     document.getElementById("resultadoDado").innerHTML = aleatorio;
@@ -297,10 +294,63 @@ function calcularDaño(argenmonAtacante, argenmonDefensor) {
     }
 }
 
-// function actualizarVida() {
-//     const jugadorAtacante = argenmones.find((argenmon) => argenmon.nombre === argenmonAtacante);
-//     const jugadorDefensor = argenmones.find((argenmon) => argenmon.nombre === argenmonDefensor);
-// }
+function atacar1() {
+    let aleatorio = Math.floor(Math.random() * 6) + 1;
+    let contraataque;
+
+    if (aleatorio == 1) {
+        contraataque = 0;
+        document.getElementById('resultado').innerHTML = 'Tu contrincante evadio el ataque.';
+    } else if (aleatorio == 2 || aleatorio == 3) {
+        contraataque = 0.5;
+        document.getElementById('resultado').innerHTML = 'El Argenmon enemigo uso Defensa. Haces la mitad del daño.';
+    } else {
+        contraataque = 1;
+        document.getElementById('resultado').innerHTML = 'Ataque exitoso.';
+    }
+
+    const ataqueFinal = calcularDaño(nombreElegido, nombreElegido2) * contraataque;
+
+    vidaElegida2 -= ataqueFinal;
+
+    document.getElementById('argenmonVida2').textContent = 'Vida: ' + vidaElegida2;
+
+    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
+        boton.disabled = true;
+    });
+    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
+        boton.disabled = false;
+    });
+}
+
+function atacar2() {
+    let aleatorio = Math.floor(Math.random() * 6) + 1;
+    let contraataque;
+
+    if (aleatorio == 1) {
+        contraataque = 0;
+        document.getElementById('resultado').innerHTML = 'Tu contrincante evadio el ataque.';
+    } else if (aleatorio == 2 || aleatorio == 3) {
+        contraataque = 0.5;
+        document.getElementById('resultado').innerHTML = 'El Argenmon enemigo uso Defensa. Haces la mitad del daño.';
+    } else {
+        contraataque = 1;
+        document.getElementById('resultado').innerHTML = 'Ataque exitoso.';
+    }
+    
+    const ataqueFinal = calcularDaño(nombreElegido2, nombreElegido) * contraataque;
+
+    vidaElegida -= ataqueFinal;
+
+    document.getElementById('argenmonVida1').textContent = 'Vida: ' + vidaElegida;
+
+    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
+        boton.disabled = false;
+    });
+    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
+        boton.disabled = true;
+    });
+}
 
 function crearMensajeResultado(resultadoFinal) {
 
@@ -311,75 +361,32 @@ function crearMensajeResultado(resultadoFinal) {
 window.addEventListener("load", cargarJuego);
 
 
-
 ataque1a.addEventListener('click', () => {
     daño = 10;
-    calcularDaño(nombreElegido, nombreElegido2);
-    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
-        boton.disabled = true;
-    })
-    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
-        boton.disabled = false;
-    });
-    console.log(daño);
+    atacar1();
 });
 
 ataque2a.addEventListener('click', () => {
     daño = 20;
-    calcularDaño(nombreElegido, nombreElegido2);
-    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
-        boton.disabled = true;
-    })
-    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
-        boton.disabled = false;
-    });
-    console.log(daño);
+    atacar1();
 });
 
 ataque3a.addEventListener('click', () => {
     daño = 30;
-    calcularDaño(nombreElegido, nombreElegido2);
-    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
-        boton.disabled = true;
-    })
-    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
-        boton.disabled = false;
-    });
-    console.log(daño);
+    atacar1();
 });
 
 ataque1b.addEventListener('click', () => {
     daño = 10;
-    calcularDaño(nombreElegido2, nombreElegido);
-    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
-        boton.disabled = false;
-    })
-    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
-        boton.disabled = true;
-    });
-    console.log(daño);
+    atacar2();
 });
 
 ataque2b.addEventListener('click', () => {
     daño = 20;
-    calcularDaño(nombreElegido2, nombreElegido);
-    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
-        boton.disabled = false;
-    })
-    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
-        boton.disabled = true;
-    });
-    console.log(daño);
+    atacar2();
 });
 
 ataque3b.addEventListener('click', () => {
     daño = 30;
-    calcularDaño(nombreElegido2, nombreElegido);
-    document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
-        boton.disabled = false;
-    })
-    document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
-        boton.disabled = true;
-    });
-    console.log(daño);
+    atacar2();
 });

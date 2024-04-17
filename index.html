@@ -13,8 +13,7 @@
 
 <body>
     <main>
-        <img class="imagenFondo" src="assets/paisajedemontañasconrio.jpg"
-            alt="Imagen de fondo de un paisaje">
+        <img class="imagenFondo" src="assets/paisajedemontañasconrio.jpg" alt="Imagen de fondo de un paisaje">
 
         <section class="pantallaPrincipal" id="pantallaPrincipal">
 
@@ -34,7 +33,7 @@
 
             <button id="btnPersonaje" class="botonPersonajes">Seleccionar</button>
         </section>
-        
+
         <section id="seleccionarPersonaje2" class="seleccionarPersonajes">
             <h2>Selecciona el Argenmon del jugador 2:</h2>
 
@@ -46,13 +45,11 @@
 
         <section id="seleccionarAtaque">
 
-            <h2 class="subtitulo">Que comience la batalla!</h2>
-
             <div class="indicadorJugador">
                 <h3>Jugador 1</h3>
                 <h3>Jugador 2</h3>
             </div>
-            
+
             <div class="containerArgenmonInfo">
                 <div class="argenmonInfo">
                     <div class="argenmonElegido" id="argenmonElegido1">
@@ -74,31 +71,32 @@
                 </div>
             </div>
 
-            <p id="resultado">Tira el dado para ver quien comienza. 1 a 3 Jugador1, 4 a 6 Jugador2.</p>
-
             <section id="reiniciar">
                 <button id="btnReiniciar">Reiniciar</button>
             </section>
 
             <div class="containerPelea">
-				<div class="pelea">
-					<div class="botonesPelea" id="botonesPelea1">
-						<input type="button" class="btnAtaque" id="ataque1a" />
-						<input type="button" class="btnAtaque" id="ataque2a" />
-						<input type="button" class="btnAtaque" id="ataque3a" />
-					</div>
-					<div class="battleMap" id="battleMapID">
-						<img id="imgPoke1" src="" width="150" height="150" class="imgEnd">
-						<img id="imgPoke2" src="" width="150" height="150">
-					</div>
-					<div class="botonesPelea" id="botonesPelea2">
-						<input type="button" class="btnAtaque" id="ataque1b" />
-						<input type="button" class="btnAtaque" id="ataque2b" />
-						<input type="button" class="btnAtaque" id="ataque3b" />
-					</div>
-				</div>
-			</div>
+                <div class="pelea">
+                    <div class="botonesPelea" id="botonesPelea1">
+                        <input type="button" class="btnAtaque" id="ataque1a" />
+                        <input type="button" class="btnAtaque" id="ataque2a" />
+                        <input type="button" class="btnAtaque" id="ataque3a" />
+                    </div>
+                    <div class="campo" id="campoID">
+                        <img id="imgArgen1" width="150"  class="imgArgen">
+                        <img src="./assets/pngegg.png" alt="Vs" id="vs">
+                        <img id="imgArgen2" width="150"  class="imgArgen">
+                    </div>
+                    <div class="botonesPelea" id="botonesPelea2">
+                        <input type="button" class="btnAtaque" id="ataque1b" />
+                        <input type="button" class="btnAtaque" id="ataque2b" />
+                        <input type="button" class="btnAtaque" id="ataque3b" />
+                    </div>
+                </div>
+            </div>
 
+            <p id="resultado">Tira el dado para ver quien comienza. 1 a 3 Jugador1, 4 a 6 Jugador2.
+            </p>
         </section>
     </main>
 </body>
