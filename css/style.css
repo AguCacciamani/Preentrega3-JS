@@ -140,10 +140,14 @@ body #seleccionarAtaque .indicadorJugador {
   flex-wrap: wrap;
   align-content: center;
   justify-content: space-around;
+  align-items: center;
   border: 3px solid #1e4e7f;
   border-radius: 7px;
   color: #fff;
   font-size: 25px;
+}
+body #seleccionarAtaque .indicadorJugador .pokebola {
+  width: 50px;
 }
 body #seleccionarAtaque .containerArgenmonInfo {
   display: flex;

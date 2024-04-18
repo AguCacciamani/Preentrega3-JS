@@ -6,8 +6,6 @@ const sectionSeleccionarAtaque = document.getElementById('seleccionarAtaque');
 const sectionReiniciar = document.getElementById('reiniciar');
 const botonPersonajeJugador = document.getElementById('btnPersonaje');
 const botonPersonajeJugador2 = document.getElementById('btnPersonaje2');
-// const botonReiniciar = document.getElementById('btnReiniciar');
-const sectionMensajes = document.getElementById('resultado');
 const contenedorTarjetas = document.getElementById('contenedorTarjetas');
 const contenedorTarjetas2 = document.getElementById('contenedorTarjetas2');
 const ataque1a = document.getElementById('ataque1a');
@@ -65,7 +63,18 @@ function cargarJuego() {
                 seleccionarPersonajeJugador(argenmones);
             })
             .catch((error) => {
-                console.error('Error al obtener datos:', error);
+                Swal.fire({
+                    title: 'Error!',
+                    html: `
+                        <b>No se encontró el personaje</b>
+                    `,
+                    imageUrl: "./assets/pokerota.png",
+                    imageWidth: 100,
+                    imageAlt: "Pokebola rota",
+                    confirmButtonText: 'Recargar',
+                    confirmButtonColor: "#1d73c9",
+                    allowOutsideClick: false
+                });
             });
     });
 }
@@ -141,14 +150,16 @@ function validarPersonajes(argenmones) {
         nombreElegido = 'Orclish';
     } else {
         Swal.fire({
-            title: 'Error!',
+            title: 'Alto ahi entrenador!',
             html: `
                 <b>El Jugador 1 no seleccionó su personaje</b>
             `,
             imageUrl: "./assets/pokerota.png",
             imageWidth: 100,
             imageAlt: "Pokebola rota",
-            confirmButtonText: 'Entendido'
+            confirmButtonText: 'Entendido',
+            confirmButtonColor: "#1d73c9",
+            allowOutsideClick: false     
         })
         volverASeleccionarPersonaje();
         return;
@@ -162,7 +173,7 @@ function validarPersonajes(argenmones) {
         nombreElegido2 = 'Orclish';
     } else {
         Swal.fire({
-            title: 'Error!',
+            title: 'Alto ahi entrenador!',
             html: `
                 <b>El Jugador 2 no seleccionó su personaje</b>
             `,
@@ -170,7 +181,9 @@ function validarPersonajes(argenmones) {
             imageUrl: "./assets/pokerota.png",
             imageWidth: 100,
             imageAlt: "Pokebola rota",
-            confirmButtonText: 'Entendido'
+            confirmButtonText: 'Entendido',
+            confirmButtonColor: "#1d73c9",
+            allowOutsideClick: false         
         })
         volverASeleccionarPersonaje();
         return;
@@ -316,8 +329,10 @@ function atacar1() {
     
     const ataqueFinal = calcularDaño(nombreElegido, nombreElegido2) * contraataque;
     
-    vidaElegida2 -= ataqueFinal;
+    vidaElegida2 -= Math.round(ataqueFinal);
     
+    vidaElegida2 = (vidaElegida2 < 0) ? 0 : vidaElegida2;
+
     document.getElementById('argenmonVida2').textContent = 'Vida: ' + vidaElegida2;
     
     document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
@@ -326,6 +341,8 @@ function atacar1() {
     document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
         boton.disabled = false;
     });
+
+    verificarGanador()
 }
 
 function atacar2() {
@@ -345,8 +362,10 @@ function atacar2() {
     
     const ataqueFinal = calcularDaño(nombreElegido2, nombreElegido) * contraataque;
     
-    vidaElegida -= ataqueFinal;
+    vidaElegida -= Math.round(ataqueFinal);
     
+    vidaElegida = (vidaElegida < 0) ? 0 : vidaElegida;
+
     document.getElementById('argenmonVida1').textContent = 'Vida: ' + vidaElegida;
     
     document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
@@ -355,12 +374,31 @@ function atacar2() {
     document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
         boton.disabled = true;
     });
+
+    verificarGanador()
 }
 
-function crearMensajeResultado(resultadoFinal) {
-    
-    sectionMensajes.innerHTML = resultadoFinal;
-    sectionReiniciar.style.display = "block";
+function verificarGanador() {
+    if (vidaElegida <= 0) {
+        mostrarMensajeGanador(argenmonElegido2.nombre);
+    } else if (vidaElegida2 <= 0) {
+        mostrarMensajeGanador(argenmonElegido.nombre);
+    }
+}
+
+function mostrarMensajeGanador(nombreGanador) {
+    Swal.fire({
+        title: '¡Felicidades!',
+        html: `<b>${nombreGanador}</b> ha ganado la partida.`,
+        imageUrl: 'https://www.eldiario.ec/wp-content/uploads/2022/11/ash_victoria_2_2-10-768x506.jpg',
+        imageWidth: 230,
+        imageAlt: 'Pokebola',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#1d73c9',
+        allowOutsideClick: false
+    }).then(() => {
+        location.reload();
+    });
 }
 
 window.addEventListener("load", cargarJuego);
@@ -395,5 +433,3 @@ ataque3b.addEventListener('click', () => {
     daño = 30;
     atacar2();
 });
-
-// botonReiniciar.addEventListener('click', reiniciarJuego);
