@@ -14,6 +14,8 @@ const ataque3a = document.getElementById('ataque3a');
 const ataque1b = document.getElementById('ataque1b');
 const ataque2b = document.getElementById('ataque2b');
 const ataque3b = document.getElementById('ataque3b');
+const imgArgen1 = document.getElementById('imgArgen1');
+const imgArgen2 = document.getElementById('imgArgen2');
 
 
 let opcionDeArgenmones = '';
@@ -159,7 +161,7 @@ function validarPersonajes(argenmones) {
             imageAlt: "Pokebola rota",
             confirmButtonText: 'Entendido',
             confirmButtonColor: "#1d73c9",
-            allowOutsideClick: false     
+            allowOutsideClick: false
         })
         volverASeleccionarPersonaje();
         return;
@@ -183,7 +185,7 @@ function validarPersonajes(argenmones) {
             imageAlt: "Pokebola rota",
             confirmButtonText: 'Entendido',
             confirmButtonColor: "#1d73c9",
-            allowOutsideClick: false         
+            allowOutsideClick: false
         })
         volverASeleccionarPersonaje();
         return;
@@ -213,6 +215,7 @@ function validarPersonajes(argenmones) {
     nombreElegido = argenmonElegido.nombre;
     tipoElegido = argenmonElegido.tipo;
     vidaElegida = argenmonElegido.vida;
+    fotoElegida1 = argenmonElegido.foto;
     ataque1Elegido = argenmonElegido.ataque1;
     ataque2Elegido = argenmonElegido.ataque2;
     ataque3Elegido = argenmonElegido.ataque3;
@@ -220,6 +223,7 @@ function validarPersonajes(argenmones) {
     nombreElegido2 = argenmonElegido2.nombre;
     tipoElegido2 = argenmonElegido2.tipo;
     vidaElegida2 = argenmonElegido2.vida;
+    fotoElegida2 = argenmonElegido2.foto;
     ataque1Elegido2 = argenmonElegido2.ataque1;
     ataque2Elegido2 = argenmonElegido2.ataque2;
     ataque3Elegido2 = argenmonElegido2.ataque3;
@@ -242,9 +246,9 @@ document.querySelectorAll('#botonesPelea2 .btnAtaque').forEach(boton => {
 
 function tirarDado() {
     let aleatorio = Math.floor(Math.random() * 6) + 1;
-    
+
     document.getElementById("resultadoDado").innerHTML = aleatorio;
-    
+
     resultadoDado = aleatorio;
 
     if (!turnoEjecutado) {
@@ -254,11 +258,11 @@ function tirarDado() {
 }
 
 function turno() {
-    
+
     if (resultadoDado === null) {
         return;
     }
-    
+
     if (resultadoDado >= 1 && resultadoDado <= 3) {
         jugadorTurno1 = 1;
         jugadorTurno2 = 2;
@@ -272,15 +276,15 @@ function turno() {
         botonesAtaqueJugadorTurno2 = document.querySelectorAll('#botonesPelea1 .btnAtaque');
         document.getElementById('resultado').innerHTML = 'Turno del Jugador 2';
     }
-    
+
     botonesAtaqueJugadorTurno1.forEach(boton => {
         boton.disabled = false;
     });
-    
+
     botonesAtaqueJugadorTurno2.forEach(boton => {
         boton.disabled = true;
     });
-    
+
     return jugadorTurno1;
 }
 
@@ -291,10 +295,10 @@ turno();
 function calcularDaño(argenmonAtacante, argenmonDefensor) {
     const jugadorAtacante = argenmones.find((argenmon) => argenmon.nombre === argenmonAtacante);
     const jugadorDefensor = argenmones.find((argenmon) => argenmon.nombre === argenmonDefensor);
-    
+
     const tipoAtacante = jugadorAtacante.tipo;
     const tipoDefensor = jugadorDefensor.tipo;
-    
+
     if (
         (tipoAtacante === "Fuego" && tipoDefensor === "Planta") ||
         (tipoAtacante === "Planta" && tipoDefensor === "Agua") ||
@@ -315,7 +319,7 @@ function calcularDaño(argenmonAtacante, argenmonDefensor) {
 function atacar1() {
     let aleatorio = Math.floor(Math.random() * 6) + 1;
     let contraataque;
-    
+
     if (aleatorio == 1) {
         contraataque = 0;
         document.getElementById('resultado').innerHTML = 'Tu contrincante evadio el ataque.';
@@ -326,15 +330,15 @@ function atacar1() {
         contraataque = 1;
         document.getElementById('resultado').innerHTML = 'Ataque exitoso.';
     }
-    
+
     const ataqueFinal = calcularDaño(nombreElegido, nombreElegido2) * contraataque;
-    
+
     vidaElegida2 -= Math.round(ataqueFinal);
-    
+
     vidaElegida2 = (vidaElegida2 < 0) ? 0 : vidaElegida2;
 
     document.getElementById('argenmonVida2').textContent = 'Vida: ' + vidaElegida2;
-    
+
     document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
         boton.disabled = true;
     });
@@ -348,7 +352,7 @@ function atacar1() {
 function atacar2() {
     let aleatorio = Math.floor(Math.random() * 6) + 1;
     let contraataque;
-    
+
     if (aleatorio == 1) {
         contraataque = 0;
         document.getElementById('resultado').innerHTML = 'Tu contrincante evadio el ataque.';
@@ -359,15 +363,15 @@ function atacar2() {
         contraataque = 1;
         document.getElementById('resultado').innerHTML = 'Ataque exitoso.';
     }
-    
+
     const ataqueFinal = calcularDaño(nombreElegido2, nombreElegido) * contraataque;
-    
+
     vidaElegida -= Math.round(ataqueFinal);
-    
+
     vidaElegida = (vidaElegida < 0) ? 0 : vidaElegida;
 
     document.getElementById('argenmonVida1').textContent = 'Vida: ' + vidaElegida;
-    
+
     document.querySelectorAll('#botonesPelea1 .btnAtaque').forEach(boton => {
         boton.disabled = false;
     });
@@ -384,6 +388,16 @@ function verificarGanador() {
     } else if (vidaElegida2 <= 0) {
         mostrarMensajeGanador(argenmonElegido.nombre);
     }
+}
+
+function animarAtaque1() {
+    gsap.to(imgArgen1, { x: 30, duration: 0.2, yoyo: true, repeat: 1 });
+    gsap.to(imgArgen2, { opacity: 0.5, duration: 0.1, yoyo: true, repeat: 2, onComplete: () => gsap.to(imgArgen2, { opacity: 1 }) });
+}
+
+function animarAtaque2() {
+    gsap.to(imgArgen2, { x: -30, duration: 0.2, yoyo: true, repeat: 1 });
+    gsap.to(imgArgen1, { opacity: 0.5, duration: 0.1, yoyo: true, repeat: 2, onComplete: () => gsap.to(imgArgen1, { opacity: 1 }) });
 }
 
 function mostrarMensajeGanador(nombreGanador) {
@@ -403,33 +417,38 @@ function mostrarMensajeGanador(nombreGanador) {
 
 window.addEventListener("load", cargarJuego);
 
-
 ataque1a.addEventListener('click', () => {
     daño = 10;
     atacar1();
+    animarAtaque1()
 });
 
 ataque2a.addEventListener('click', () => {
     daño = 20;
     atacar1();
+    animarAtaque1()
 });
 
 ataque3a.addEventListener('click', () => {
     daño = 30;
     atacar1();
+    animarAtaque1()
 });
 
 ataque1b.addEventListener('click', () => {
     daño = 10;
     atacar2();
+    animarAtaque2()
 });
 
 ataque2b.addEventListener('click', () => {
     daño = 20;
     atacar2();
+    animarAtaque2()
 });
 
 ataque3b.addEventListener('click', () => {
     daño = 30;
     atacar2();
+    animarAtaque2()
 });
