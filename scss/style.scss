@@ -159,15 +159,16 @@ body {
             background-color: #1d73c9;
             flex-wrap: wrap;
             align-content: center;
-            justify-content: space-around;
+            justify-content: space-evenly;
             align-items: center;
             border: 3px solid #1e4e7f;
             border-radius: 7px;
             color: #fff;
             font-size: 25px;
 
-            .pokebola {
-                width: 50px;
+            .tituloBatalla {
+                width: 200px;
+                margin-top: -8px;
             }
         }
 
@@ -228,6 +229,7 @@ body {
         }
 
         #resultado {
+            margin: 0;
             background-color: #fff;
             border-radius: 7px;
             border-top: 3px solid grey;
@@ -235,12 +237,12 @@ body {
             border-right: 3px solid black;
             border-bottom: 3px solid black;
             width: 70vw;
-            height: 55px;
+            height: 50px;
             text-align: center;
             font-family: "VT323", monospace;
             font-size: 20px;
             font-weight: 600;
-            padding: calc((55px - 6px - 20px)/2);
+            padding: 6px;
         }
 
         .pelea {
@@ -309,37 +311,6 @@ body {
                     cursor: pointer;
                     background-color: #7cafe2;
                     transition: 0.2s;
-                }
-            }
-        }
-
-        #mensajes {
-            background-color: #ffffffd5;
-            border: 3px solid #a7a7a7;
-            border-radius: 20px;
-            padding: 10px;
-            text-align: center;
-
-            p {
-                font-family: "VT323", monospace;
-                font-size: 20px;
-            }
-
-            #reiniciar {
-                margin-top: 10px;
-
-                #btnReiniciar {
-                    background: 0 0;
-                    font-family: "VT323", monospace;
-                    background-color: transparent;
-                    border: none;
-                    font-size: 16px;
-                    color: #cf1010;
-
-                    &:hover {
-                        cursor: pointer;
-                        color: #ffcc03;
-                    }
                 }
             }
         }

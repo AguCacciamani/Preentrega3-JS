@@ -8,6 +8,7 @@ const botonPersonajeJugador = document.getElementById('btnPersonaje');
 const botonPersonajeJugador2 = document.getElementById('btnPersonaje2');
 const contenedorTarjetas = document.getElementById('contenedorTarjetas');
 const contenedorTarjetas2 = document.getElementById('contenedorTarjetas2');
+const botonTirarDado = document.getElementById('tirarDado');
 const ataque1a = document.getElementById('ataque1a');
 const ataque2a = document.getElementById('ataque2a');
 const ataque3a = document.getElementById('ataque3a');
@@ -306,6 +307,11 @@ document.getElementById('tirarDado').addEventListener('click', tirarDado);
 
 turno();
 
+botonTirarDado.addEventListener('click', function() {
+    tirarDado();
+    botonTirarDado.disabled = true;
+});
+
 function calcularDaño(argenmonAtacante, argenmonDefensor) {
     const jugadorAtacante = argenmones.find((argenmon) => argenmon.nombre === argenmonAtacante);
     const jugadorDefensor = argenmones.find((argenmon) => argenmon.nombre === argenmonDefensor);
@@ -433,8 +439,15 @@ function mostrarMensajeGanador(nombreGanador) {
 
 function reproducirAudio() {
     let reproductor = document.getElementById("reproductor");
-    reproductor.play();
+    document.addEventListener("click", function() {
+        reproductor.play();
+    }, { once: true });
 }
+
+window.addEventListener("load", function() {
+    reproducirAudio();
+    cargarJuego();
+});
 
 ataque1a.addEventListener('click', () => {
     daño = 10;
@@ -472,7 +485,3 @@ ataque3b.addEventListener('click', () => {
     animarAtaque2()
 });
 
-window.addEventListener("load", function() {
-    reproducirAudio();
-        cargarJuego();
-    });
