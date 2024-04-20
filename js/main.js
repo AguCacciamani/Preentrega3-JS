@@ -16,6 +16,9 @@ const ataque2b = document.getElementById('ataque2b');
 const ataque3b = document.getElementById('ataque3b');
 const imgArgen1 = document.getElementById('imgArgen1');
 const imgArgen2 = document.getElementById('imgArgen2');
+const vol = document.getElementById('volumen');
+const botonVolumen = document.getElementById('botonVolumen');
+const menuVolumen = document.getElementById('menuVolumen');
 
 
 let opcionDeArgenmones = '';
@@ -46,6 +49,14 @@ let botonesAtaqueJugadorTurno2;
 let resultadoDado = null;
 let daño = 0;
 let turnoEjecutado = false;
+
+reproductor.volume = vol.value;
+
+function cambiarVolumen(evt) {
+    reproductor.volume = evt.target.value;
+}
+
+vol.addEventListener("change", cambiarVolumen);
 
 
 function cargarJuego() {
@@ -143,6 +154,7 @@ function validarPersonajes(argenmones) {
     sectionSeleccionarPersonaje.style.display = "none";
     sectionSeleccionarPersonaje2.style.display = "none";
     sectionSeleccionarAtaque.style.display = "flex";
+    
 
     if (inputFlamdor.checked) {
         nombreElegido = 'Flamdor';
@@ -152,7 +164,7 @@ function validarPersonajes(argenmones) {
         nombreElegido = 'Orclish';
     } else {
         Swal.fire({
-            title: 'Alto ahi entrenador!',
+            title: 'Alto ahí entrenador!',
             html: `
                 <b>El Jugador 1 no seleccionó su personaje</b>
             `,
@@ -175,7 +187,7 @@ function validarPersonajes(argenmones) {
         nombreElegido2 = 'Orclish';
     } else {
         Swal.fire({
-            title: 'Alto ahi entrenador!',
+            title: 'Alto ahí entrenador!',
             html: `
                 <b>El Jugador 2 no seleccionó su personaje</b>
             `,
@@ -227,6 +239,8 @@ function validarPersonajes(argenmones) {
     ataque1Elegido2 = argenmonElegido2.ataque1;
     ataque2Elegido2 = argenmonElegido2.ataque2;
     ataque3Elegido2 = argenmonElegido2.ataque3;
+
+    document.getElementById('reproductor').src = "./assets/audio/Battle.mp3"
 }
 
 function volverASeleccionarPersonaje() {
@@ -413,9 +427,14 @@ function mostrarMensajeGanador(nombreGanador) {
     }).then(() => {
         location.reload();
     });
+
+    document.getElementById('reproductor').src = './assets/audio/Victory.mp3';
 }
 
-window.addEventListener("load", cargarJuego);
+function reproducirAudio() {
+    let reproductor = document.getElementById("reproductor");
+    reproductor.play();
+}
 
 ataque1a.addEventListener('click', () => {
     daño = 10;
@@ -452,3 +471,8 @@ ataque3b.addEventListener('click', () => {
     atacar2();
     animarAtaque2()
 });
+
+window.addEventListener("load", function() {
+    reproducirAudio();
+        cargarJuego();
+    });

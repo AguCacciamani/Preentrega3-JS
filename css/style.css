@@ -1,5 +1,6 @@
 @import 'https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300&display=swap';
 @import 'https://fonts.googleapis.com/css2?family=Indie+Flower&family=Jersey+10&family=Sniglet:wght@400;800&family=VT323&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap';
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +8,7 @@
 }
 
 body {
-  font-family: "VT323", monospace;
+  font-family: "Pixelify Sans", sans-serif;
   width: 100vw;
 }
 body .imagenFondo {
@@ -37,7 +38,7 @@ body .pantallaPrincipal #start {
   background-color: rgba(29, 115, 201, 0.4666666667);
   border: 3px solid #1e4e7f;
   border-radius: 7px;
-  font-family: "VT323", monospace;
+  font-family: "Pixelify Sans", sans-serif;
   color: #000;
   font-size: 19px;
   font-weight: 600;
@@ -47,6 +48,12 @@ body .pantallaPrincipal #start:hover {
   background-color: #7cafe2;
   transition: 0.2s;
   color: #ffcc03;
+}
+body .dropdown {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
 }
 body .seleccionarPersonajes {
   height: 100vh;
@@ -88,7 +95,7 @@ body .seleccionarPersonajes .tarjetas label {
   border-radius: 2px 20px 2px 20px;
 }
 body .seleccionarPersonajes .tarjetas label p {
-  font-family: "VT323", monospace;
+  font-family: "Pixelify Sans", sans-serif;
   font-size: 25px;
   font-weight: 600;
 }
@@ -112,7 +119,7 @@ body .seleccionarPersonajes .botonPersonajes {
   background-color: rgba(29, 115, 201, 0.4666666667);
   border: 3px solid #1e4e7f;
   border-radius: 7px;
-  font-family: "VT323", monospace;
+  font-family: "Pixelify Sans", sans-serif;
   color: #000;
   font-size: 19px;
   font-weight: 600;
@@ -157,8 +164,6 @@ body #seleccionarAtaque .containerArgenmonInfo {
 body #seleccionarAtaque .containerArgenmonInfo .argenmonInfo {
   width: 197px;
   display: flex;
-}
-body #seleccionarAtaque .containerArgenmonInfo .argenmonInfo .argenmonElegido {
   border: 3px solid #1e4e7f;
   background-color: rgba(29, 115, 201, 0.4666666667);
   font-family: "VT323", monospace;
@@ -166,8 +171,10 @@ body #seleccionarAtaque .containerArgenmonInfo .argenmonInfo .argenmonElegido {
   font-weight: 600;
   border-radius: 10px;
   width: 200px;
-  height: 80px;
   padding: 8px;
+}
+body #seleccionarAtaque .containerArgenmonInfo .argenmonInfo p {
+  margin: 0;
 }
 body #seleccionarAtaque .containerArgenmonInfo #tirarDado {
   padding: 5px;
@@ -206,6 +213,7 @@ body #seleccionarAtaque #resultado {
   width: 70vw;
   height: 55px;
   text-align: center;
+  font-family: "VT323", monospace;
   font-size: 20px;
   font-weight: 600;
   padding: 14.5px;
