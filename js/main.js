@@ -303,9 +303,9 @@ function turno() {
     return jugadorTurno1;
 }
 
-document.getElementById('tirarDado').addEventListener('click', tirarDado);
-
-turno();
+document.getElementById('tirarDado').addEventListener('click', function() {
+    turno();
+});
 
 botonTirarDado.addEventListener('click', function() {
     tirarDado();
@@ -484,4 +484,3 @@ ataque3b.addEventListener('click', () => {
     atacar2();
     animarAtaque2()
 });
-
