@@ -3,7 +3,6 @@ const sectionSeleccionarPersonaje = document.getElementById('seleccionarPersonaj
 const sectionSeleccionarPersonaje2 = document.getElementById('seleccionarPersonaje2');
 const sectionPantallaPrincipal = document.getElementById('pantallaPrincipal');
 const sectionSeleccionarAtaque = document.getElementById('seleccionarAtaque');
-const sectionReiniciar = document.getElementById('reiniciar');
 const botonPersonajeJugador = document.getElementById('btnPersonaje');
 const botonPersonajeJugador2 = document.getElementById('btnPersonaje2');
 const contenedorTarjetas = document.getElementById('contenedorTarjetas');
@@ -65,7 +64,6 @@ function cargarJuego() {
     sectionSeleccionarPersonaje.style.display = 'none';
     sectionSeleccionarPersonaje2.style.display = 'none';
     sectionSeleccionarAtaque.style.display = 'none';
-    sectionReiniciar.style.display = 'none';
 
     playGame.addEventListener('click', () => {
         fetch('data/argenmones.json')
@@ -100,7 +98,6 @@ function seleccionarPersonajeJugador(argenmonesData) {
     sectionSeleccionarPersonaje.style.display = 'flex';
     sectionSeleccionarPersonaje2.style.display = 'none';
     sectionSeleccionarAtaque.style.display = 'none';
-    sectionReiniciar.style.display = 'none';
 
     argenmones.forEach((argenmon) => {
         opcionDeArgenmones += `
@@ -128,7 +125,6 @@ function seleccionarPersonajeJugador2(argenmonesData) {
     sectionSeleccionarPersonaje.style.display = 'none';
     sectionSeleccionarPersonaje2.style.display = 'flex';
     sectionSeleccionarAtaque.style.display = 'none';
-    sectionReiniciar.style.display = 'none';
 
     contenedorTarjetas2.innerHTML = '';
 
@@ -155,7 +151,7 @@ function validarPersonajes(argenmones) {
     sectionSeleccionarPersonaje.style.display = "none";
     sectionSeleccionarPersonaje2.style.display = "none";
     sectionSeleccionarAtaque.style.display = "flex";
-    
+
 
     if (inputFlamdor.checked) {
         nombreElegido = 'Flamdor';
@@ -303,11 +299,11 @@ function turno() {
     return jugadorTurno1;
 }
 
-document.getElementById('tirarDado').addEventListener('click', function() {
+document.getElementById('tirarDado').addEventListener('click', function () {
     turno();
 });
 
-botonTirarDado.addEventListener('click', function() {
+botonTirarDado.addEventListener('click', function () {
     tirarDado();
     botonTirarDado.disabled = true;
 });
@@ -439,12 +435,12 @@ function mostrarMensajeGanador(nombreGanador) {
 
 function reproducirAudio() {
     let reproductor = document.getElementById("reproductor");
-    document.addEventListener("click", function() {
+    document.addEventListener("click", function () {
         reproductor.play();
     }, { once: true });
 }
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     reproducirAudio();
     cargarJuego();
 });
