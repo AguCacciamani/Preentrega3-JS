@@ -10,3 +10,5 @@ Incorpore Bootstrap para el boton del sonido y lo que vimos en clase del reprodu
 
 Para muchas de las funciones me ayude con otros proyectos que encontre en internet e intente ir adaptandolas al codigo con lo que aprendimos y lo que se me ocurria en el momento.
 Tambien me ayude con IA. Salvo el titulo, todas las imagenes estan generadas con IA y algunos errores que fui teniendo tambien me ayude con chatGPT para saber de que se trataba y corregirlo.
+
+El responsive trate de hacerlo para celulares en horizontal, pero no le dedique mucho tiempo...
