@@ -65,7 +65,7 @@ body {
     .seleccionarPersonajes {
         height: 100vh;
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         flex-direction: column;
         align-content: center;
         justify-content: center;
@@ -107,6 +107,7 @@ body {
                     font-family: "Pixelify Sans", sans-serif;
                     font-size: 25px;
                     font-weight: 600;
+                    margin: 0;
                 }
 
                 &:hover {
@@ -151,7 +152,6 @@ body {
     #seleccionarAtaque {
         display: flex;
         height: 100vh;
-        flex-wrap: wrap;
         flex-direction: column;
         align-content: center;
         justify-content: space-evenly;
@@ -171,6 +171,10 @@ body {
             color: #fff;
             font-size: 25px;
 
+            .indicadorJugadorp {
+                margin: 0;
+            }
+
             .tituloBatalla {
                 width: 200px;
                 margin-top: -8px;
@@ -186,6 +190,7 @@ body {
             .argenmonInfo {
                 width: 197px;
                 display: flex;
+                align-items: center;
                 border: 3px solid #1e4e7f;
                 background-color: #1d73c977;
                 font-family: "VT323", monospace;
@@ -234,7 +239,7 @@ body {
         }
 
         #resultado {
-            margin: 0;
+            margin-bottom: 10px;
             background-color: #fff;
             border-radius: 7px;
             border-top: 3px solid grey;
@@ -242,7 +247,7 @@ body {
             border-right: 3px solid black;
             border-bottom: 3px solid black;
             width: 70vw;
-            height: 50px;
+            height: auto;
             text-align: center;
             font-family: "VT323", monospace;
             font-size: 20px;
@@ -336,6 +341,193 @@ body {
             .ataquesEnemigo {
                 margin: 20px;
             }
+        }
+    }
+
+}
+
+@media (max-width: 954px) {
+    body {
+        .imagenFondo {
+            margin-top: -90px;
+        }
+
+        .seleccionarPersonajes {
+            .tarjetas {
+                label {
+                    margin: 10px 10px;
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 798px) {
+    body {
+        .containerPelea {
+
+            .campo {
+                margin: 0 !important;
+
+                .imgArgen {
+                    margin: 0 5px !important;
+                }
+            }
+        }
+
+        #resultado {
+            width: 75vw;
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    body {
+        .imagenFondo {
+            width: auto !important;
+        }
+
+        #seleccionarAtaque {
+            .pelea {
+                margin-top: 15px;
+                width: 100vw;
+                display: flex;
+                flex-wrap: wrap;
+                align-content: center;
+                flex-direction: column;
+                align-items: center;
+
+                .botonesPelea {
+                    flex-direction: row;
+                    align-self: center;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
+
+@media (max-height: 500px) {
+
+    body {
+        .imagenFondo {
+            margin-top: -210px;
+        }
+
+        .dropdown {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+
+            .btn {
+                background-color: transparent;
+                border: none;
+                padding: 0;
+            }
+        }
+
+        .seleccionarPersonajes {
+            h2 {
+                font-size: 22px;
+                margin: 10px;
+            }
+
+            .tarjetas {
+                flex-wrap: nowrap;
+
+                img {
+                    width: 100px;
+                }
+
+                label {
+                    margin: 10px 10px;
+                    min-width: 200px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-height: 437px) {
+    body {
+
+        #seleccionarAtaque {
+            .indicadorJugador {
+                position: absolute;
+                display: flex;
+                justify-content: space-around;
+                top: 10px;
+                width: 85vw !important;
+                flex-wrap: nowrap;
+                font-size: 20px;
+                height: 50px;
+
+                .tituloBatalla {
+                    display: none;
+                }
+
+                .indicadorJugadorp {
+                    margin: 7px;
+                }
+            }
+
+            .containerArgenmonInfo {
+                margin: 5px;
+                height: 85px;
+                width: 95vw;
+                position: absolute;
+                top: 60px;
+
+                .argenmonInfo {
+                    width: 125px;
+                }
+
+                p {
+                    font-size: 17px;
+                }
+
+                #dado {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    height: 42px;
+                    margin-top: -50px;
+
+                    #tirarDado {
+                        margin: 2px;
+                        font-size: 15px;
+                    }
+
+                    #resultadoDado {
+                        width: 40px;
+                        height: 40px;
+                        font-size: 23px;
+                        margin: 2px;
+                    }
+                }
+
+            }
+        }
+
+        .pelea {
+            .botonesPelea {
+                .btnAtaque {
+                    margin-bottom: 10px !important;
+                }
+            }
+        }
+
+        .containerPelea {
+            position: absolute;
+            bottom: 25px !important;
+        }
+
+        #resultado {
+            position: absolute;
+            margin: 0;
+            top: 68px;
+            width: 63vw !important;
         }
     }
 }

@@ -62,7 +62,7 @@ body .dropdown .dropdown-item {
 body .seleccionarPersonajes {
   height: 100vh;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex-direction: column;
   align-content: center;
   justify-content: center;
@@ -102,6 +102,7 @@ body .seleccionarPersonajes .tarjetas label p {
   font-family: "Pixelify Sans", sans-serif;
   font-size: 25px;
   font-weight: 600;
+  margin: 0;
 }
 body .seleccionarPersonajes .tarjetas label:hover {
   cursor: pointer;
@@ -137,7 +138,6 @@ body .seleccionarPersonajes .botonPersonajes:hover {
 body #seleccionarAtaque {
   display: flex;
   height: 100vh;
-  flex-wrap: wrap;
   flex-direction: column;
   align-content: center;
   justify-content: space-evenly;
@@ -157,6 +157,9 @@ body #seleccionarAtaque .indicadorJugador {
   color: #fff;
   font-size: 25px;
 }
+body #seleccionarAtaque .indicadorJugador .indicadorJugadorp {
+  margin: 0;
+}
 body #seleccionarAtaque .indicadorJugador .tituloBatalla {
   width: 200px;
   margin-top: -8px;
@@ -169,6 +172,7 @@ body #seleccionarAtaque .containerArgenmonInfo {
 body #seleccionarAtaque .containerArgenmonInfo .argenmonInfo {
   width: 197px;
   display: flex;
+  align-items: center;
   border: 3px solid #1e4e7f;
   background-color: rgba(29, 115, 201, 0.4666666667);
   font-family: "VT323", monospace;
@@ -209,7 +213,7 @@ body #seleccionarAtaque .containerArgenmonInfo #resultadoDado {
   align-items: center;
 }
 body #seleccionarAtaque #resultado {
-  margin: 0;
+  margin-bottom: 10px;
   background-color: #fff;
   border-radius: 7px;
   border-top: 3px solid grey;
@@ -217,7 +221,7 @@ body #seleccionarAtaque #resultado {
   border-right: 3px solid black;
   border-bottom: 3px solid black;
   width: 70vw;
-  height: 50px;
+  height: auto;
   text-align: center;
   font-family: "VT323", monospace;
   font-size: 20px;
@@ -297,4 +301,133 @@ body #seleccionarAtaque .ataques .ataquesJugador {
 }
 body #seleccionarAtaque .ataques .ataquesEnemigo {
   margin: 20px;
+}
+
+@media (max-width: 954px) {
+  body .imagenFondo {
+    margin-top: -90px;
+  }
+  body .seleccionarPersonajes .tarjetas label {
+    margin: 10px 10px;
+  }
+}
+@media (max-width: 798px) {
+  body .containerPelea .campo {
+    margin: 0 !important;
+  }
+  body .containerPelea .campo .imgArgen {
+    margin: 0 5px !important;
+  }
+  body #resultado {
+    width: 75vw;
+  }
+}
+@media (max-width: 700px) {
+  body .imagenFondo {
+    width: auto !important;
+  }
+  body #seleccionarAtaque .pelea {
+    margin-top: 15px;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  body #seleccionarAtaque .pelea .botonesPelea {
+    flex-direction: row;
+    align-self: center;
+    justify-content: center;
+  }
+}
+@media (max-height: 500px) {
+  body .imagenFondo {
+    margin-top: -210px;
+  }
+  body .dropdown {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+  }
+  body .dropdown .btn {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+  body .seleccionarPersonajes h2 {
+    font-size: 22px;
+    margin: 10px;
+  }
+  body .seleccionarPersonajes .tarjetas {
+    flex-wrap: nowrap;
+  }
+  body .seleccionarPersonajes .tarjetas img {
+    width: 100px;
+  }
+  body .seleccionarPersonajes .tarjetas label {
+    margin: 10px 10px;
+    min-width: 200px;
+  }
+}
+@media (max-height: 437px) {
+  body #seleccionarAtaque .indicadorJugador {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    top: 10px;
+    width: 85vw !important;
+    flex-wrap: nowrap;
+    font-size: 20px;
+    height: 50px;
+  }
+  body #seleccionarAtaque .indicadorJugador .tituloBatalla {
+    display: none;
+  }
+  body #seleccionarAtaque .indicadorJugador .indicadorJugadorp {
+    margin: 7px;
+  }
+  body #seleccionarAtaque .containerArgenmonInfo {
+    margin: 5px;
+    height: 85px;
+    width: 95vw;
+    position: absolute;
+    top: 60px;
+  }
+  body #seleccionarAtaque .containerArgenmonInfo .argenmonInfo {
+    width: 125px;
+  }
+  body #seleccionarAtaque .containerArgenmonInfo p {
+    font-size: 17px;
+  }
+  body #seleccionarAtaque .containerArgenmonInfo #dado {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 42px;
+    margin-top: -50px;
+  }
+  body #seleccionarAtaque .containerArgenmonInfo #dado #tirarDado {
+    margin: 2px;
+    font-size: 15px;
+  }
+  body #seleccionarAtaque .containerArgenmonInfo #dado #resultadoDado {
+    width: 40px;
+    height: 40px;
+    font-size: 23px;
+    margin: 2px;
+  }
+  body .pelea .botonesPelea .btnAtaque {
+    margin-bottom: 10px !important;
+  }
+  body .containerPelea {
+    position: absolute;
+    bottom: 25px !important;
+  }
+  body #resultado {
+    position: absolute;
+    margin: 0;
+    top: 68px;
+    width: 63vw !important;
+  }
 }/*# sourceMappingURL=style.css.map */
